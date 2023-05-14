@@ -9,7 +9,6 @@ const Favoris = () => {
   const { state: {charBookmarks, comicBookmarks} } = useContext(MarvelContext);
 
   const [page, setPage] = useState("character");
-
   
   return (
     <section className="container">
