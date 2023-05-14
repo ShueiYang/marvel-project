@@ -59,7 +59,7 @@ export function storeReducer(state, action) {
     case "DEL_BOOKMARK":
       return {
         ...state,
-        [action.bookmarkType]: state[action.bookmarkType].filter(bookmark => bookmark._id !== action.payload)
+        [action.bookmarkType]: state[action.bookmarkType].filter(bookmark => bookmark[action.id] !== action.payload)  //dynamic update on bookmarkType and bookmark id ..
     };   
     default:
       throw new Error(`Unhandle action type: ${action.type}`)
