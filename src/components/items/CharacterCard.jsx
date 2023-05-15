@@ -19,7 +19,7 @@ const CharacterCard = ({data}) => {
       return false 
     } 
   );
-
+  // custom hook for bookmark action
   const { addCharacter, deleteCharacter, error } = useBookmark();
 
 
@@ -38,7 +38,7 @@ const CharacterCard = ({data}) => {
 
 
   const imgPath = data.thumbnail?.path
-  const imgUrl = `${imgPath}/standard_amazing.${data.thumbnail?.extension}`
+  const imgUrl = `${imgPath}/standard_large.${data.thumbnail?.extension}`
 
   return (
     <div className="character-card relative w-full h-auto rounded-xl">   

@@ -20,7 +20,7 @@ import PrivateRoutes from "./components/PrivateRoute";
 function App() {
 
   const { user } = useContext(UserContext);
-  const { state: {charBookmarks}, dispatch } = useContext(MarvelContext);
+  const { dispatch } = useContext(MarvelContext);
   const [ visible, setVisible ] = useState(false);
 
   useEffect(() => {
@@ -47,7 +47,6 @@ function App() {
     }  
   }, [user, dispatch]);  
 
-  console.log("RESULT IN APPJS CHAR:", charBookmarks);
 
   return (
     <>

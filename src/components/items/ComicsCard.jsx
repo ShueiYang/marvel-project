@@ -18,7 +18,7 @@ const ComicsCard = ({comicsData}) => {
       return false 
     } 
   );
-
+  // custom hook for bookmark action
   const { addComic, deleteComic, error } = useBookmark();
 
 
@@ -36,7 +36,7 @@ const ComicsCard = ({comicsData}) => {
   }
 
   const imgPath = comicsData.thumbnail.path
-  const imgUrl = `${imgPath}/standard_amazing.${comicsData.thumbnail.extension}`
+  const imgUrl = `${imgPath}/standard_large.${comicsData.thumbnail.extension}`
 
   return (
     <div className="comic-card relative w-full h-auto rounded-xl">   
