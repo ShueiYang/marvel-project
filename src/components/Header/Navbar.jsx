@@ -27,10 +27,18 @@ const Navbar = ({ visible, setVisible }) => {
             Comics 
           </Link>
 
-          <Link to="/favoris">
-            Favoris    
-          </Link>
-        </div>
+          { user ? 
+           <Link to="/favoris">
+              Favoris    
+           </Link>
+          : <div 
+              onClick={()=>{setVisible(true)}}
+              className="hover:cursor-pointer"
+            >
+              Favoris
+            </div>
+          }        
+          </div>
 
         <div className="flex justify-between">
          { user ?     

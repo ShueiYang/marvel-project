@@ -1,12 +1,11 @@
 import { Outlet, Navigate } from "react-router-dom";
 
 
-const PrivateRoutes = ({ user, setVisible }) => {
+const PrivateRoutes = ({ user }) => {
 
     if (user) { 
         return <Outlet />
     }
-    setVisible(true);
     return <Navigate to="/"/>
 };
 
