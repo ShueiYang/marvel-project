@@ -57,7 +57,7 @@ function App() {
           <Route path="/comics" element={<Comics />} />
           <Route path="/character/:id" element={<CharacterInfo />} />
           <Route path="/comic/:id" element={<ComicInfo /> } />
-          <Route element={<PrivateRoutes user={user} setVisible={setVisible} />}>
+          <Route element={<PrivateRoutes user={user} />}>
             <Route path="/favoris" element={<Favoris />} />
           </Route>
         </Routes>
