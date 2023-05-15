@@ -1,19 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ACTION_TYPES, MarvelContext } from "../../Store/reducer";
 import { UserContext } from "../marvelContext/UserProvider";
 
 
 const Navbar = ({ visible, setVisible }) => {
   
-  // const { state: { user }, dispatch } = useContext(MarvelContext);
   const { user, setUser } = useContext(UserContext);
 
   function sessionLogOut() {
-    // dispatch({
-    //   type: ACTION_TYPES.SET_USER,
-    //   payload: null
-    // })
     setUser(null);
     window.open(`${import.meta.env.VITE_API_URL}/auth/logout`, "_self");
   }
