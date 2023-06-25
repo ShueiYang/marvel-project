@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Header/Navbar"
 import Footer from "./components/Footer"
@@ -14,13 +15,13 @@ import CharacterInfo from "./pages/CharacterInfo";
 import ComicInfo from "./pages/ComicInfo";
 import Favoris from "./pages/Favoris";
 import PrivateRoutes from "./components/PrivateRoute";
-
+import OauthCallback from "./pages/OauthCallback";
 
 
 function App() {
 
   const { user } = useContext(UserContext);
-  const { dispatch } = useContext(MarvelContext);
+  const { dispatch, setJwToken } = useContext(MarvelContext);
   const [ visible, setVisible ] = useState(false);
 
   useEffect(() => {
@@ -47,16 +48,31 @@ function App() {
     }  
   }, [user, dispatch]);  
 
+  function handleJWT (token) {
+    if(token) {
+      setJwToken(token)
+      Cookies.set("marvel-jwt", 
+        token, {
+          expires: 1,
+          sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+          secure: process.env.NODE_ENV === "production"    
+        })
+    } else {
+      setJwToken("");
+      Cookies.remove("marvel-jwt")
+    }
+  }
 
   return (
     <>
-      <Navbar visible={visible} setVisible={setVisible} />
+      <Navbar visible={visible} setVisible={setVisible} handleJWT={handleJWT} />
        <HeroSection />
         <Routes>
           <Route path="/" element={<Characters />} />
           <Route path="/comics" element={<Comics />} />
           <Route path="/character/:id" element={<CharacterInfo />} />
           <Route path="/comic/:id" element={<ComicInfo /> } />
+          <Route path="/oauth/google/callback" element={<OauthCallback handleJWT={handleJWT}/> } />
           <Route element={<PrivateRoutes user={user} />}>
             <Route path="/favoris" element={<Favoris />} />
           </Route>

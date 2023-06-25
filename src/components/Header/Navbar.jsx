@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../marvelContext/UserProvider";
 
 
-const Navbar = ({ visible, setVisible }) => {
+const Navbar = ({ visible, setVisible, handleJWT }) => {
   
   const { user, setUser } = useContext(UserContext);
 
   function sessionLogOut() {
     setUser(null);
-    window.open(`${import.meta.env.VITE_API_URL}/auth/logout`, "_self");
+    handleJWT(null);
+    // window.open(`${import.meta.env.VITE_API_URL}/auth/logout`, "_self");
   }
   
   return (  
@@ -17,7 +18,7 @@ const Navbar = ({ visible, setVisible }) => {
       <nav className="container h-full relative flex justify-between items-center">
         <Link to="/"  className="marvel">
           <img src="/logo.svg" alt="logo marvel"/>
-       </Link> 
+        </Link> 
         <div className="flex gap-4">
           <Link to="/">
             Characters    
