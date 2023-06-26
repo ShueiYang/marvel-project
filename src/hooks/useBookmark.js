@@ -8,15 +8,16 @@ function useBookmark() {
   const { dispatch, jwToken } = useContext(MarvelContext);
   const [error, setError] = useState(null);
 
-  async function addCharacter(userId, characterId, character) {
+  async function addCharacter(characterId, character) {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/bookmark/character`,
         {
-          // shorthand
-          userId,
-          characterId,
+          characterId,  //shorthand
           character,
+        }, 
+        {
+          headers: { Authorization: `Bearer ${jwToken}`}
         }
       );
       if (response.status === 201) {
@@ -33,15 +34,16 @@ function useBookmark() {
     }
   }
 
-  async function addComic(userId, comicId, comic) {
+  async function addComic(comicId, comic) {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/bookmark/comic`,
         {
-          // shorthand
-          userId,
           comicId,
           comic,
+        },
+        {
+          headers: { Authorization: `Bearer ${jwToken}`}
         }
       );
       if (response.status === 201) {
@@ -58,12 +60,13 @@ function useBookmark() {
     }
   }
 
-  async function deleteCharacter(userId, characterId) {
+  async function deleteCharacter(characterId) {
     try {
       const response = await axios.delete(
-        `${
-          import.meta.env.VITE_API_URL
-        }/bookmark/character/${userId}/${characterId}`
+        `${import.meta.env.VITE_API_URL}/bookmark/character/${characterId}`,
+        {
+          headers: { Authorization: `Bearer ${jwToken}`}
+        }   
       );
       if (response.status === 200) {
         dispatch({
@@ -79,10 +82,13 @@ function useBookmark() {
     }
   }
 
-  async function deleteComic(userId, comicId) {
+  async function deleteComic(comicId) {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/bookmark/comic/${userId}/${comicId}`
+        `${import.meta.env.VITE_API_URL}/bookmark/comic/${comicId}`,
+        {
+          headers: { Authorization: `Bearer ${jwToken}`}
+        }
       );
       if (response.status === 200) {
         dispatch({

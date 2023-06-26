@@ -7,7 +7,7 @@ import Characters from "./pages/Characters";
 import HeroSection from "./components/Herosection/HeroSection";
 import Modal from "./components/Modal";
 
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { UserContext } from "./components/marvelContext/UserProvider";
 import { MarvelContext, ACTION_TYPES } from "./Store/reducer";
 import Comics from "./pages/Comics";
@@ -21,14 +21,22 @@ import OauthCallback from "./pages/OauthCallback";
 function App() {
 
   const { user, visible } = useContext(UserContext);
-  const { dispatch, setJwToken } = useContext(MarvelContext);
+  const { dispatch, jwToken, setJwToken } = useContext(MarvelContext);
 
   useEffect(() => {
     async function getBookmarks(){
       try {
       const [ characterArray, comicArray ] = await Promise.all([
-        axios.get(`${import.meta.env.VITE_API_URL}/bookmark/character?userId=${user.id}`),
-        axios.get(`${import.meta.env.VITE_API_URL}/bookmark/comic?userId=${user.id}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/bookmark/character`, {
+          headers: {
+            authorization: `Bearer ${jwToken}`,
+          }
+        }),
+        axios.get(`${import.meta.env.VITE_API_URL}/bookmark/comic`, {
+          headers: {
+            authorization: `Bearer ${jwToken}`,
+          }
+        })
       ])  
         dispatch({
           type: ACTION_TYPES.SET_CHAR_BOOKMARK,
@@ -45,7 +53,7 @@ function App() {
     if(user) {
       getBookmarks();
     }  
-  }, [user, dispatch]);  
+  }, [user, dispatch, jwToken]);  
 
   function handleJWT (token) {
     if(token) {

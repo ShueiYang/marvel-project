@@ -25,9 +25,9 @@ const ComicsCard = ({comicsData}) => {
   function toggleBookmark() {
     if(user) {
       if(!bookmarked) {
-        addComic(user.id, comicsData._id, comicsData)
+        addComic(comicsData._id, comicsData)
       } else {
-        deleteComic(user.id, comicsData._id)
+        deleteComic(comicsData._id)
       }
         setBookmarked(!bookmarked);
     } else {
@@ -47,7 +47,7 @@ const ComicsCard = ({comicsData}) => {
               alt={`Comic ${comicsData.title}`} 
               className="w-[65%] lg:w-full lg:rounded-t-xl aspect-square"
           />
-          <h3 className="flex-1">{comicsData.title}</h3>    
+          <h3 className="flex-1 px-2 title-desc">{comicsData.title}</h3>    
           <p className="comic-desc text-sm">
               {comicsData.description ? comicsData.description : "No description..."}
           </p> 

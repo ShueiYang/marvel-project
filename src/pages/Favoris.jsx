@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, Fragment } from "react";
 import CharacterCard from "../components/items/CharacterCard";
 import ComicsCard from "../components/items/ComicsCard";
 import { MarvelContext } from "../Store/reducer";
@@ -41,9 +41,9 @@ const Favoris = () => {
           ) : (
             charBookmarks.map((bookmark) => {
               return (
-                <div key={bookmark._id}>
+                <Fragment key={bookmark._id}>
                   <CharacterCard data={bookmark.character} />
-                </div>
+                </Fragment>
               );
             })
           )}
@@ -57,9 +57,9 @@ const Favoris = () => {
           ) : (
             comicBookmarks.map((bookmark) => {
               return (
-                <div key={bookmark._id}>
+                <Fragment key={bookmark._id}>
                   <ComicsCard comicsData={bookmark.comic} />
-                </div>
+                </Fragment>
               );
             })
           )}

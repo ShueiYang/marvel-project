@@ -26,9 +26,9 @@ const CharacterCard = ({data}) => {
   function toggleBookmark() {
     if(user) {
       if(!bookmarked) {
-        addCharacter(user.id, data._id, data)
+        addCharacter(data._id, data)
       } else {
-        deleteCharacter(user.id, data._id)
+        deleteCharacter(data._id)
       }
         setBookmarked(!bookmarked);
     } else {
@@ -49,7 +49,7 @@ const CharacterCard = ({data}) => {
               alt={`character ${data.name}`}
               className="w-[65%] lg:w-full lg:rounded-t-xl aspect-square"
           />
-          <h3 className="flex-1">{data.name}</h3>    
+          <h3 className="flex-1 px-2 title-desc">{data.name}</h3>    
           <p className="desc text-sm">
               {data.description ? data.description : "No description..."}
           </p>               
