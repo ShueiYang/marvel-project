@@ -20,9 +20,8 @@ import OauthCallback from "./pages/OauthCallback";
 
 function App() {
 
-  const { user } = useContext(UserContext);
+  const { user, visible } = useContext(UserContext);
   const { dispatch, setJwToken } = useContext(MarvelContext);
-  const [ visible, setVisible ] = useState(false);
 
   useEffect(() => {
     async function getBookmarks(){
@@ -65,7 +64,7 @@ function App() {
 
   return (
     <>
-      <Navbar visible={visible} setVisible={setVisible} handleJWT={handleJWT} />
+      <Navbar handleJWT={handleJWT} />
        <HeroSection />
         <Routes>
           <Route path="/" element={<Characters />} />
@@ -78,7 +77,7 @@ function App() {
           </Route>
         </Routes>
       <Footer />
-      {visible && <Modal setVisible={setVisible}/>}   
+      {visible && <Modal />}   
     </>
   )
 }

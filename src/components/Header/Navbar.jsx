@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../marvelContext/UserProvider";
 
 
-const Navbar = ({ visible, setVisible, handleJWT }) => {
+const Navbar = ({ handleJWT }) => {
   
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, setVisible } = useContext(UserContext);
 
   function sessionLogOut() {
     setUser(null);
@@ -55,7 +55,7 @@ const Navbar = ({ visible, setVisible, handleJWT }) => {
                 <span>Sign Out</span> 
               </button>
             </div>
-         : <button onClick={()=> {setVisible(!visible)}} className="hover:cursor-pointer">
+         : <button onClick={()=> {setVisible(true)}} className="hover:cursor-pointer">
             Sign In
           </button>
          }     

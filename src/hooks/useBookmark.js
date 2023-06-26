@@ -5,7 +5,7 @@ import { MarvelContext, ACTION_TYPES } from "../Store/reducer";
 
 function useBookmark() {
     
-  const { dispatch } = useContext(MarvelContext);
+  const { dispatch, jwToken } = useContext(MarvelContext);
   const [error, setError] = useState(null);
 
   async function addCharacter(userId, characterId, character) {

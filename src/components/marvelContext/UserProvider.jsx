@@ -9,6 +9,7 @@ const UserProvider = ({ children }) => {
 
   const { jwToken } = useContext(MarvelContext);
   const [ user, setUser ] = useState(null);
+  const [ visible, setVisible ] = useState(false);
 
   useEffect(() => {
     async function getUser() {
@@ -33,7 +34,7 @@ const UserProvider = ({ children }) => {
 
   
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, visible, setVisible }}>
       {children}
     </UserContext.Provider>
   );

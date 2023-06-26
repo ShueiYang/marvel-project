@@ -7,7 +7,7 @@ import { UserContext } from "../marvelContext/UserProvider";
 
 const ComicsCard = ({comicsData}) => {
 
-  const { user } = useContext(UserContext);
+  const { user, setVisible } = useContext(UserContext);
   const { state: {comicBookmarks} } = useContext(MarvelContext);
 
   const [bookmarked, setBookmarked] = useState(()=> {
@@ -31,7 +31,7 @@ const ComicsCard = ({comicsData}) => {
       }
         setBookmarked(!bookmarked);
     } else {
-      console.log("YOU NEED TO REGISTER");
+      setVisible(true);
     }
   }
 
