@@ -33,7 +33,7 @@ const SearchBar = ({ datas, querySearch, setQuerySearch, placeholder }) => {
   useClickOutside(searchRef, ()=> setOpen(false));
 
   return (
-    <div className="wrapper relative mt-12 w-[85%] sm:absolute sm:-top-36 md:-top-44 lg:-top-48 sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[33%]">
+    <div className="wrapper relative z-50 mt-12 w-[85%] sm:absolute sm:-top-36 md:-top-44 lg:-top-48 sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[33%]">
       <div className="relative w-full h-full" ref={searchRef} >
         <input  
           className={`${open ? "rounded-b-none" : "rounded-b-3xl"}

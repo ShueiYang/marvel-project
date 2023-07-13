@@ -92,7 +92,7 @@ const Characters = () => {
      : characters.length === 0 ? 
        <h2 className="text-center">No result Found</h2>
 
-     : <div className="w-full card mt-6">
+     : <div className="relative w-full card mt-6 z-0">
         {characters.map(character => {
           return (
            <Fragment key={character._id}>
